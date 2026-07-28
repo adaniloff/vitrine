@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-:root {
-  color-scheme: light dark;
-}
+/* Drive the dark: variant from a .dark class (manual toggle) instead of
+   the OS media query. The initial class is set in index.html to avoid a flash. */
+@custom-variant dark (&:where(.dark, .dark *));
 
 html {
   scroll-behavior: smooth;

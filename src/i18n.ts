@@ -19,6 +19,8 @@ const messages = {
     'career.experiences': 'Expériences',
     'career.pause': 'Mettre en pause le défilement',
     'career.play': 'Reprendre le défilement',
+    'theme.dark': 'Activer le thème sombre',
+    'theme.light': 'Activer le thème clair',
   },
   en: {
     available: 'Freelance · available for your projects',
@@ -33,6 +35,8 @@ const messages = {
     'career.experiences': 'Experience',
     'career.pause': 'Pause the rotation',
     'career.play': 'Resume the rotation',
+    'theme.dark': 'Switch to dark theme',
+    'theme.light': 'Switch to light theme',
   },
 } as const
 
