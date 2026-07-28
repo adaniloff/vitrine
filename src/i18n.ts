@@ -13,7 +13,8 @@ const messages = {
     )} puis ${strong('CTO')}. J'accompagne vos projets ${strong(
       'Symfony / PHP',
     )} et ${strong('Vue.js')}, du proto à la mise en production.`,
-    quote:
+    'exp.title': "Ma dernière expérience en date:",
+    'exp.description':
       "CTO d'une startup, de sa création à la production : conception produit, architecture, setup CI/CD et observabilité, constitution et encadrement de l'équipe technique (~6 personnes).",
     contact: 'Me contacter',
   },
@@ -24,7 +25,8 @@ const messages = {
     )} then ${strong('CTO')}. I help build your ${strong(
       'Symfony / PHP',
     )} and ${strong('Vue.js')} projects, from prototype to production.`,
-    quote:
+    'exp.title': 'My most recent role:',
+    'exp.description':
       'CTO of a startup, from inception to production: product design, architecture, CI/CD and observability setup, building and leading the engineering team (~6 people).',
     contact: 'Get in touch',
   },
