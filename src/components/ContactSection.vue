@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const email = 'aleksandr.daniloff@ayruu.com'
+const email = 'adaniloff@proton.me'
 </script>
 
 <template>
@@ -26,7 +26,7 @@ const email = 'aleksandr.daniloff@ayruu.com'
 
       <div class="mt-8 flex items-center justify-center gap-6">
         <a
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/in/aleksandr-daniloff-38728b34"
           target="_blank"
           rel="noopener noreferrer"
           class="text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline dark:hover:text-slate-100"
@@ -34,12 +34,12 @@ const email = 'aleksandr.daniloff@ayruu.com'
           LinkedIn
         </a>
         <a
-          href="https://github.com/"
+          href="https://www.malt.fr/profile/aleksandrdaniloff"
           target="_blank"
           rel="noopener noreferrer"
           class="text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline dark:hover:text-slate-100"
         >
-          GitHub
+          Malt
         </a>
       </div>
     </div>
