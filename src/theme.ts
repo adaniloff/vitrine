@@ -33,7 +33,6 @@ export function toggleTheme() {
   setTheme(theme.value === 'dark' ? 'light' : 'dark')
 }
 
-// Follow the OS theme until the user makes an explicit choice.
 media.addEventListener('change', () => {
   if (!stored()) {
     theme.value = systemTheme()

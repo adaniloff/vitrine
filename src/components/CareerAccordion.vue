@@ -15,7 +15,6 @@ function stop() {
   timer = undefined
 }
 
-// Single entry point: always clears, then only (re)arms when open and not paused.
 function start() {
   stop()
   if (!open.value || paused.value) return
@@ -26,7 +25,7 @@ function start() {
 
 function goTo(i: number) {
   current.value = i
-  start() // reset the countdown after a manual pick
+  start()
 }
 
 function step(delta: number) {
@@ -34,7 +33,6 @@ function step(delta: number) {
   goTo((current.value + delta + n) % n)
 }
 
-// Swipe navigation (mobile). Horizontal only, so vertical scroll still works.
 let touchX = 0
 let touchY = 0
 function onTouchStart(e: TouchEvent) {
@@ -46,7 +44,7 @@ function onTouchEnd(e: TouchEvent) {
   const dx = e.changedTouches[0].clientX - touchX
   const dy = e.changedTouches[0].clientY - touchY
   if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1)
-  else start() // not a swipe: just resume
+  else start()
 }
 
 function toggle() {
@@ -96,7 +94,6 @@ onUnmounted(stop)
         {{ t('career.download') }}
       </a>
 
-      <!-- Pause the rotation while the user hovers or keyboard-focuses it. -->
       <div
         class="flex flex-col gap-4"
         @mouseenter="stop"
@@ -104,8 +101,6 @@ onUnmounted(stop)
         @focusin="stop"
         @focusout="start"
       >
-        <!-- All slides stacked in one grid cell: the box auto-sizes to the
-             tallest, so switching never changes height (no layout jump). -->
         <div
           class="grid touch-pan-y"
           :aria-live="paused ? 'polite' : 'off'"
@@ -134,7 +129,6 @@ onUnmounted(stop)
           </blockquote>
         </div>
 
-        <!-- Manual controls (also satisfy WCAG 2.2.2: pausable auto-rotation). -->
         <div class="flex items-center justify-between gap-4 pl-4">
           <div class="-ml-1 flex" role="group" :aria-label="t('career.experiences')">
             <button

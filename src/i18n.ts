@@ -59,7 +59,6 @@ export function setLocale(next: Locale) {
   document.documentElement.lang = next
 }
 
-// reactive: reading locale.value inside render tracks locale changes
 export function t(key: MessageKey): string {
   return messages[locale.value][key]
 }

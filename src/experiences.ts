@@ -7,7 +7,6 @@ export interface Experience {
   description: Record<Locale, string>
 }
 
-// reactive: reading locale.value inside render tracks locale changes
 export function tr(m: Record<Locale, string>): string {
   return m[locale.value]
 }
