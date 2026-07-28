@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { t } from '../i18n'
+import CareerAccordion from './CareerAccordion.vue'
 
 const stack = [
   'Symfony',
@@ -42,20 +43,6 @@ const email = 'adaniloff@proton.me'
       v-html="t('pitch')"
     ></p>
 
-    <div class="flex flex-col gap-2">
-      <p
-        v-if="t('exp.title')"
-        class="text-sm font-medium text-slate-700 dark:text-slate-300"
-      >
-        {{ t('exp.title') }}
-      </p>
-      <blockquote
-        class="border-l-2 border-slate-300 pl-4 text-base leading-relaxed text-slate-500 dark:border-slate-700 dark:text-slate-400"
-      >
-        {{ t('exp.description') }}
-      </blockquote>
-    </div>
-
     <ul class="flex flex-wrap gap-x-3 gap-y-1.5">
       <li
         v-for="tech in stack"
@@ -65,6 +52,8 @@ const email = 'adaniloff@proton.me'
         {{ tech }}
       </li>
     </ul>
+
+    <CareerAccordion />
 
     <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
       <a

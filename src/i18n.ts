@@ -13,10 +13,12 @@ const messages = {
     )} puis ${strong('CTO')}. J'accompagne vos projets ${strong(
       'Symfony / PHP',
     )} et ${strong('Vue.js')}, du proto à la mise en production.`,
-    'exp.title': "Ma dernière expérience en date:",
-    'exp.description':
-      "CTO d'une startup, de sa création à la production : conception produit, architecture, setup CI/CD et observabilité, constitution et encadrement de l'équipe technique (~6 personnes).",
     contact: 'Me contacter',
+    'career.title': 'Voir mon parcours',
+    'career.download': 'Télécharger le CV (PDF)',
+    'career.experiences': 'Expériences',
+    'career.pause': 'Mettre en pause le défilement',
+    'career.play': 'Reprendre le défilement',
   },
   en: {
     available: 'Freelance · available for your projects',
@@ -25,10 +27,12 @@ const messages = {
     )} then ${strong('CTO')}. I help build your ${strong(
       'Symfony / PHP',
     )} and ${strong('Vue.js')} projects, from prototype to production.`,
-    'exp.title': 'My most recent role:',
-    'exp.description':
-      'CTO of a startup, from inception to production: product design, architecture, CI/CD and observability setup, building and leading the engineering team (~6 people).',
     contact: 'Get in touch',
+    'career.title': 'See my career',
+    'career.download': 'Download résumé (PDF)',
+    'career.experiences': 'Experience',
+    'career.pause': 'Pause the rotation',
+    'career.play': 'Resume the rotation',
   },
 } as const
 
@@ -51,7 +55,7 @@ export function setLocale(next: Locale) {
   document.documentElement.lang = next
 }
 
-// Reactive: reading locale.value inside render tracks locale changes.
+// reactive: reading locale.value inside render tracks locale changes
 export function t(key: MessageKey): string {
   return messages[locale.value][key]
 }
