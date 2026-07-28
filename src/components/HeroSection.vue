@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { t } from '../i18n'
+
 const stack = [
   'Symfony',
   'PHP',
@@ -26,7 +28,7 @@ const email = 'adaniloff@proton.me'
     <p
       class="text-xs font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400"
     >
-      Freelance · disponible pour vos projets
+      {{ t('available') }}
     </p>
 
     <h1
@@ -35,24 +37,15 @@ const email = 'adaniloff@proton.me'
       Aleksandr Daniloff
     </h1>
 
-    <p class="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-      ~15 ans d'expérience en développement web, dont plus de 10 comme
-      <span class="text-slate-900 dark:text-slate-100">Tech Lead</span>
-      puis
-      <span class="text-slate-900 dark:text-slate-100">CTO</span>.
-      J'accompagne vos projets
-      <span class="text-slate-900 dark:text-slate-100">Symfony / PHP</span>
-      et
-      <span class="text-slate-900 dark:text-slate-100">Vue.js</span>,
-      du proto à la mise en production.
-    </p>
+    <p
+      class="text-lg leading-relaxed text-slate-600 dark:text-slate-300"
+      v-html="t('pitch')"
+    ></p>
 
     <blockquote
       class="border-l-2 border-slate-300 pl-4 text-base leading-relaxed text-slate-500 dark:border-slate-700 dark:text-slate-400"
     >
-      CTO d'une startup, de sa création à la production : conception produit,
-      architecture, setup CI/CD et observabilité, constitution
-      et encadrement de l'équipe technique (~6 personnes).
+      {{ t('quote') }}
     </blockquote>
 
     <ul class="flex flex-wrap gap-x-3 gap-y-1.5">
@@ -70,7 +63,7 @@ const email = 'adaniloff@proton.me'
         :href="`mailto:${email}`"
         class="border border-slate-900 px-5 py-2.5 text-sm font-medium text-slate-900 transition hover:bg-slate-900 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:border-slate-100 dark:text-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900"
       >
-        Me contacter
+        {{ t('contact') }}
       </a>
       <a
         href="https://www.linkedin.com/in/aleksandr-daniloff-38728b34"
