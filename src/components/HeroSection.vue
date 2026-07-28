@@ -1,51 +1,82 @@
 <script setup lang="ts">
-const stack = ['Symfony', 'PHP', 'Vue.js', 'Docker']
+const stack = [
+  'Symfony',
+  'PHP',
+  'Vue.js',
+  'Docker',
+  'Domain Driven Design',
+  'Clean Code',
+  'CI/CD',
+  'RabbitMQ',
+  'ELK',
+  'API Platform',
+  'PostgreSQL',
+  'Redis',
+  'TDD',
+  'CQRS / Event Sourcing',
+  'Tech leadership',
+]
+const email = 'adaniloff@proton.me'
 </script>
 
 <template>
   <section
-    class="flex min-h-[90svh] flex-col items-center justify-center gap-6 px-6 py-24 text-center"
+    class="mx-auto flex min-h-[90svh] max-w-2xl flex-col justify-center gap-8 px-6 py-24"
   >
     <p
-      class="rounded-full border border-violet-300/40 bg-violet-500/10 px-4 py-1 text-sm font-medium text-violet-500 dark:text-violet-300"
+      class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500"
     >
       Freelance · disponible pour vos projets
     </p>
 
     <h1
-      class="max-w-3xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl dark:text-slate-50"
+      class="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl dark:text-slate-50"
     >
       Aleksandr Daniloff
     </h1>
 
-    <p class="max-w-2xl text-lg text-slate-600 sm:text-xl dark:text-slate-300">
+    <p class="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
       ~15 ans d'expérience en développement web. Tech lead pendant 8 ans, puis
       CTO d'une startup. J'accompagne vos projets
-      <span class="font-semibold text-slate-900 dark:text-slate-100">
-        Symfony / PHP
-      </span>
+      <span class="text-slate-900 dark:text-slate-100">Symfony / PHP</span>
       et
-      <span class="font-semibold text-slate-900 dark:text-slate-100">
-        Vue.js
-      </span>
+      <span class="text-slate-900 dark:text-slate-100">Vue.js</span>
       — du proto à la mise en production.
     </p>
 
-    <div class="mt-2 flex flex-wrap items-center justify-center gap-2">
-      <span
+    <ul class="flex flex-wrap gap-x-4 gap-y-1.5">
+      <li
         v-for="tech in stack"
         :key="tech"
-        class="rounded-md bg-slate-100 px-3 py-1 font-mono text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-200"
+        class="font-mono text-xs text-slate-500 dark:text-slate-400"
       >
         {{ tech }}
-      </span>
-    </div>
+      </li>
+    </ul>
 
-    <a
-      href="#contact"
-      class="mt-6 rounded-lg bg-violet-600 px-6 py-3 font-medium text-white transition hover:bg-violet-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500"
-    >
-      Me contacter
-    </a>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+      <a
+        :href="`mailto:${email}`"
+        class="border border-slate-900 px-5 py-2.5 text-sm font-medium text-slate-900 transition hover:bg-slate-900 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:border-slate-100 dark:text-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900"
+      >
+        Me contacter
+      </a>
+      <a
+        href="https://www.linkedin.com/in/aleksandr-daniloff-38728b34"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline dark:hover:text-slate-100"
+      >
+        LinkedIn
+      </a>
+      <a
+        href="https://www.malt.fr/profile/aleksandrdaniloff"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline dark:hover:text-slate-100"
+      >
+        Malt
+      </a>
+    </div>
   </section>
 </template>
