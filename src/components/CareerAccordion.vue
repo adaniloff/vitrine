@@ -29,6 +29,26 @@ function goTo(i: number) {
   start() // reset the countdown after a manual pick
 }
 
+function step(delta: number) {
+  const n = experiences.length
+  goTo((current.value + delta + n) % n)
+}
+
+// Swipe navigation (mobile). Horizontal only, so vertical scroll still works.
+let touchX = 0
+let touchY = 0
+function onTouchStart(e: TouchEvent) {
+  touchX = e.changedTouches[0].clientX
+  touchY = e.changedTouches[0].clientY
+  stop()
+}
+function onTouchEnd(e: TouchEvent) {
+  const dx = e.changedTouches[0].clientX - touchX
+  const dy = e.changedTouches[0].clientY - touchY
+  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1)
+  else start() // not a swipe: just resume
+}
+
 function toggle() {
   open.value = !open.value
   start()
@@ -86,7 +106,12 @@ onUnmounted(stop)
       >
         <!-- All slides stacked in one grid cell: the box auto-sizes to the
              tallest, so switching never changes height (no layout jump). -->
-        <div class="grid" :aria-live="paused ? 'polite' : 'off'">
+        <div
+          class="grid touch-pan-y"
+          :aria-live="paused ? 'polite' : 'off'"
+          @touchstart.passive="onTouchStart"
+          @touchend.passive="onTouchEnd"
+        >
           <blockquote
             v-for="(item, i) in experiences"
             :key="i"
