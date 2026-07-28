@@ -9,7 +9,7 @@ const locales: Locale[] = ['fr', 'en']
   <div class="min-h-svh bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50">
     <nav
       aria-label="Langue / Language"
-      class="fixed right-4 top-4 flex items-center gap-1 text-xs font-medium"
+      class="flex items-center justify-end gap-1 px-4 pt-4 text-xs font-medium sm:fixed sm:right-4 sm:top-4 sm:px-0 sm:pt-0"
     >
       <button
         v-for="(lang, i) in locales"
