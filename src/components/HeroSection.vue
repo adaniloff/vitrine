@@ -3,17 +3,17 @@ const stack = [
   'Symfony',
   'PHP',
   'Vue.js',
-  'Docker',
-  'Domain Driven Design',
-  'Clean Code',
-  'CI/CD',
-  'RabbitMQ',
   'ELK',
-  'API Platform',
-  'PostgreSQL',
   'Redis',
+  'RabbitMQ',
+  'Docker',
+  'CI/CD',
+  'RESTful API',
   'TDD',
-  'CQRS / Event Sourcing',
+  'CQRS',
+  'Event Sourcing',
+  'Clean Code',
+  'Domain Driven Design',
   'Tech leadership',
 ]
 const email = 'adaniloff@proton.me'
@@ -24,7 +24,7 @@ const email = 'adaniloff@proton.me'
     class="mx-auto flex min-h-[90svh] max-w-2xl flex-col justify-center gap-8 px-6 py-24"
   >
     <p
-      class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500"
+      class="text-xs font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400"
     >
       Freelance · disponible pour vos projets
     </p>
@@ -36,19 +36,30 @@ const email = 'adaniloff@proton.me'
     </h1>
 
     <p class="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-      ~15 ans d'expérience en développement web. Tech lead pendant 8 ans, puis
-      CTO d'une startup. J'accompagne vos projets
+      ~15 ans d'expérience en développement web, dont plus de 10 comme
+      <span class="text-slate-900 dark:text-slate-100">Tech Lead</span>
+      puis
+      <span class="text-slate-900 dark:text-slate-100">CTO</span>.
+      J'accompagne vos projets
       <span class="text-slate-900 dark:text-slate-100">Symfony / PHP</span>
       et
-      <span class="text-slate-900 dark:text-slate-100">Vue.js</span>
-      — du proto à la mise en production.
+      <span class="text-slate-900 dark:text-slate-100">Vue.js</span>,
+      du proto à la mise en production.
     </p>
 
-    <ul class="flex flex-wrap gap-x-4 gap-y-1.5">
+    <blockquote
+      class="border-l-2 border-slate-300 pl-4 text-base leading-relaxed text-slate-500 dark:border-slate-700 dark:text-slate-400"
+    >
+      CTO d'une startup, de sa création à la production : conception produit,
+      architecture, setup CI/CD et observabilité, constitution
+      et encadrement de l'équipe technique (~6 personnes).
+    </blockquote>
+
+    <ul class="flex flex-wrap gap-x-3 gap-y-1.5">
       <li
         v-for="tech in stack"
         :key="tech"
-        class="font-mono text-xs text-slate-500 dark:text-slate-400"
+        class="font-mono text-xs text-slate-600 after:ml-3 after:text-slate-400 last:after:content-none dark:text-slate-400 dark:after:text-slate-600 after:content-['·']"
       >
         {{ tech }}
       </li>
@@ -65,7 +76,7 @@ const email = 'adaniloff@proton.me'
         href="https://www.linkedin.com/in/aleksandr-daniloff-38728b34"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-sm text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline dark:hover:text-slate-100"
+        class="text-sm text-slate-600 underline-offset-4 transition hover:text-slate-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:text-slate-400 dark:hover:text-slate-100 dark:focus-visible:outline-slate-100"
       >
         LinkedIn
       </a>
@@ -73,7 +84,7 @@ const email = 'adaniloff@proton.me'
         href="https://www.malt.fr/profile/aleksandrdaniloff"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-sm text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline dark:hover:text-slate-100"
+        class="text-sm text-slate-600 underline-offset-4 transition hover:text-slate-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:text-slate-400 dark:hover:text-slate-100 dark:focus-visible:outline-slate-100"
       >
         Malt
       </a>
