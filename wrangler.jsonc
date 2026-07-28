@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "adaniloff",
+  "name": "vitrine",
   "compatibility_date": "2025-07-28",
   "build": {
     "command": "npm run build"
