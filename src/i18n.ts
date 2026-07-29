@@ -44,19 +44,26 @@ export type MessageKey = keyof (typeof messages)['fr']
 
 const STORAGE_KEY = 'lang'
 
+// Imported by the SSR build too: keep browser access out of module load and
+// inside initI18n() (client-only). Default reconciled on the client.
+
 function detectLocale(): Locale {
   const saved = localStorage.getItem(STORAGE_KEY)
   if (saved === 'fr' || saved === 'en') return saved
   return navigator.language.toLowerCase().startsWith('en') ? 'en' : 'fr'
 }
 
-export const locale = ref<Locale>(detectLocale())
-document.documentElement.lang = locale.value
+export const locale = ref<Locale>('fr')
 
 export function setLocale(next: Locale) {
   locale.value = next
   localStorage.setItem(STORAGE_KEY, next)
   document.documentElement.lang = next
+}
+
+export function initI18n() {
+  locale.value = detectLocale()
+  document.documentElement.lang = locale.value
 }
 
 export function t(key: MessageKey): string {

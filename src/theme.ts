@@ -3,7 +3,10 @@ import { ref } from 'vue'
 export type Theme = 'light' | 'dark'
 
 const STORAGE_KEY = 'theme'
-const media = window.matchMedia('(prefers-color-scheme: dark)')
+
+// Imported by the SSR build too: keep browser access out of module load and
+// inside initTheme() (client-only). Default reconciled on the client.
+export const theme = ref<Theme>('light')
 
 function stored(): Theme | null {
   const v = localStorage.getItem(STORAGE_KEY)
@@ -11,7 +14,7 @@ function stored(): Theme | null {
 }
 
 function systemTheme(): Theme {
-  return media.matches ? 'dark' : 'light'
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 function apply(t: Theme) {
@@ -19,9 +22,6 @@ function apply(t: Theme) {
   root.classList.toggle('dark', t === 'dark')
   root.style.colorScheme = t
 }
-
-export const theme = ref<Theme>(stored() ?? systemTheme())
-apply(theme.value)
 
 export function setTheme(t: Theme) {
   theme.value = t
@@ -33,9 +33,15 @@ export function toggleTheme() {
   setTheme(theme.value === 'dark' ? 'light' : 'dark')
 }
 
-media.addEventListener('change', () => {
-  if (!stored()) {
-    theme.value = systemTheme()
-    apply(theme.value)
-  }
-})
+export function initTheme() {
+  theme.value = stored() ?? systemTheme()
+  apply(theme.value)
+  window
+    .matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', () => {
+      if (!stored()) {
+        theme.value = systemTheme()
+        apply(theme.value)
+      }
+    })
+}
