@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { t } from '../i18n'
 import CareerAccordion from './CareerAccordion.vue'
+import WritingsSection from './WritingsSection.vue'
 
 const stack = [
   'Symfony',
@@ -54,6 +55,10 @@ const email = 'adaniloff@proton.me'
     </ul>
 
     <CareerAccordion />
+
+    <hr class="border-slate-200 dark:border-slate-800" />
+
+    <WritingsSection />
 
     <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
       <a
