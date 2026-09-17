@@ -2,6 +2,7 @@ import type { Component } from 'vue'
 import type { Locale } from '../i18n'
 import { projects, type Project } from '../projects'
 import Webhooks5xxArticle from './Webhooks5xxArticle.vue'
+import Webhooks5xxArticleEn from './Webhooks5xxArticleEn.vue'
 
 // Single source of truth for every article: slug and locale drive both the
 // client-side route (main.ts) and the prerendered output path
@@ -18,6 +19,8 @@ export interface ArticleEntry {
   datePublished: string
   /** Show a locale badge on the home page when browsing in a different UI language. */
   frenchOnly: boolean
+  /** Shows an in-article disclaimer noting the content was AI-translated. */
+  aiTranslated: boolean
   relatedProject?: Project
 }
 
@@ -33,8 +36,21 @@ export const articles: ArticleEntry[] = [
     title: 'Pourquoi mes webhooks ne renvoient plus de 5xx',
     description:
       "Un webhook qui répond 5xx déclenche un effet domino (retries, données partielles, circuit-breaker). Retour sur le pattern Transactional Outbox pour séparer l'ack technique de l'ack métier.",
+    datePublished: '2026-09-17',
+    frenchOnly: false,
+    aiTranslated: false,
+    relatedProject: projects[0],
+  },
+  {
+    slug: 'webhooks-5xx',
+    locale: 'en',
+    component: Webhooks5xxArticleEn,
+    title: 'Why my webhooks no longer return 5xx',
+    description:
+      "A webhook that answers 5xx triggers a domino effect (retries, partial data, open circuit-breaker). A look back at the Transactional Outbox pattern to separate the technical ack from the business ack.",
     datePublished: '2026-09-10',
-    frenchOnly: true,
+    frenchOnly: false,
+    aiTranslated: true,
     relatedProject: projects[0],
   },
 ]

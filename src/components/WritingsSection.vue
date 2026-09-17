@@ -1,7 +1,21 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { locale, t } from '../i18n'
-import { articles, articlePath } from '../articles/registry'
+import { articles, articlePath, type ArticleEntry } from '../articles/registry'
 import RelatedProjectCard from './RelatedProjectCard.vue'
+
+// One entry per slug: prefer the article matching the current UI locale,
+// falling back to whichever locale exists (tagged via frenchOnly) so a
+// translated slug doesn't show up twice in the list.
+const visibleArticles = computed(() => {
+  const bySlug = new Map<string, ArticleEntry>()
+  for (const article of articles) {
+    if (!bySlug.has(article.slug) || article.locale === locale.value) {
+      bySlug.set(article.slug, article)
+    }
+  }
+  return [...bySlug.values()]
+})
 </script>
 
 <template>
@@ -13,7 +27,7 @@ import RelatedProjectCard from './RelatedProjectCard.vue'
     </h2>
 
     <ul class="flex flex-col gap-5">
-      <li v-for="article in articles" :key="article.slug" class="flex flex-col gap-3">
+      <li v-for="article in visibleArticles" :key="article.slug" class="flex flex-col gap-3">
         <a
           :href="articlePath(article.locale, article.slug)"
           class="inline-flex w-fit flex-wrap items-center gap-2 text-base text-slate-600 underline-offset-4 transition hover:text-slate-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:text-slate-400 dark:hover:text-slate-100 dark:focus-visible:outline-slate-100"

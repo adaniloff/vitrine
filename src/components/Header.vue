@@ -1,18 +1,26 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import type { Locale } from '../i18n'
 
-const props = defineProps<{
-  date: string
-  readingTime: string
-  title: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    date: string
+    readingTime: string
+    title: string
+    locale?: Locale
+  }>(),
+  { locale: 'fr' },
+)
 
 const dateLabel = computed(() => {
-  const label = new Date(`${props.date}T00:00:00`).toLocaleDateString('fr-FR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  const label = new Date(`${props.date}T00:00:00`).toLocaleDateString(
+    props.locale === 'en' ? 'en-US' : 'fr-FR',
+    {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    },
+  )
   return label.charAt(0).toUpperCase() + label.slice(1)
 })
 </script>

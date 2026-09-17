@@ -23,10 +23,13 @@ const indexPath = resolve(root, 'dist/index.html')
 // every article page too.
 const template = readFileSync(indexPath, 'utf-8')
 
-function withMeta(html, { title, description, path, locale, ogType = 'website' }) {
+function withMeta(html, { title, description, path, locale, ogType = 'website', alternates = [] }) {
   const canonical = `${siteUrl}${path}`
+  const altLinks = alternates
+    .map((alt) => `<link rel="alternate" hreflang="${alt.locale}" href="${siteUrl}${alt.path}" />`)
+    .join('\n    ')
   const hreflang = locale
-    ? `<link rel="canonical" href="${canonical}" />\n    <link rel="alternate" hreflang="${locale}" href="${canonical}" />\n    <link rel="alternate" hreflang="x-default" href="${canonical}" />`
+    ? `<link rel="canonical" href="${canonical}" />\n    ${altLinks}`
     : `<link rel="canonical" href="${canonical}" />`
 
   return html
@@ -92,12 +95,23 @@ console.log('Prerendered dist/index.html')
 
 // Articles as static pages
 for (const article of articleMeta) {
+  // hreflang must be reciprocal: list every translated locale for this slug
+  // (including itself), plus x-default pointing at the FR version — the
+  // site's primary language.
+  const translations = articleMeta.filter((a) => a.slug === article.slug)
+  const defaultTranslation = translations.find((a) => a.locale === 'fr') ?? article
+  const alternates = [
+    ...translations.map((a) => ({ locale: a.locale, path: a.path })),
+    { locale: 'x-default', path: defaultTranslation.path },
+  ]
+
   let html = withMeta(template, {
     title: `${article.title} - ${siteName}`,
     description: article.description,
     path: article.path,
     locale: article.locale,
     ogType: 'article',
+    alternates,
   })
   html = withBlogPostingJsonLd(html, {
     title: article.title,
@@ -106,6 +120,10 @@ for (const article of articleMeta) {
     locale: article.locale,
     datePublished: article.datePublished,
   })
-  writePage(resolve(root, `dist${article.path}index.html`), html, await renderArticle(article.slug))
+  writePage(
+    resolve(root, `dist${article.path}index.html`),
+    html,
+    await renderArticle(article.slug, article.locale),
+  )
   console.log(`Prerendered dist${article.path}index.html`)
 }

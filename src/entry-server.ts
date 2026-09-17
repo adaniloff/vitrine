@@ -11,9 +11,9 @@ async function render(component: Component): Promise<string> {
 
 export const renderHome = () => render(App)
 
-export function renderArticle(slug: string): Promise<string> {
-  const article = articles.find((a) => a.slug === slug)
-  if (!article) throw new Error(`Unknown article slug: ${slug}`)
+export function renderArticle(slug: string, locale: string): Promise<string> {
+  const article = articles.find((a) => a.slug === slug && a.locale === locale)
+  if (!article) throw new Error(`Unknown article: ${locale}/${slug}`)
   return render(article.component)
 }
 

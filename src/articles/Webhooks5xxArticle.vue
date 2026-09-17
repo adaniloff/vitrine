@@ -19,13 +19,13 @@ const h4 = 'mt-2 text-lg font-medium text-slate-900 dark:text-slate-50'
 
 <template>
   <div class="min-h-svh bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50">
-    <SiteNav :show-lang-switch="false" />
+    <SiteNav page-locale="fr" sibling-href="/en/articles/webhooks-5xx/" />
 
     <main>
       <article class="mx-auto flex max-w-2xl flex-col gap-8 px-6 py-24">
         <a href="/"
           class="text-sm text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:text-slate-400 dark:hover:text-slate-100 dark:focus-visible:outline-slate-100">
-          ← Retour / Back
+          ← Retour
         </a>
 
         <Header date="2026-09-10" reading-time="~10 min de lecture"
@@ -150,7 +150,7 @@ const h4 = 'mt-2 text-lg font-medium text-slate-900 dark:text-slate-50'
           </p>
           <ArticleNote>
             Dorénavant, lorsque je parlerai d'évènement de webhook, j'utiliserai le terme
-            <code :class="code">"webhook_event"</code> qui est le nom de table que j'ai choisi.
+            <code :class="code">"webhook_entry"</code> qui est le nom de table que j'ai choisi.
           </ArticleNote>
           <p>
             Ensuite, l'appel étant fait par un tiers, il faut s'assurer de deux points: que l'émetteur soit bien
@@ -172,7 +172,7 @@ const h4 = 'mt-2 text-lg font-medium text-slate-900 dark:text-slate-50'
             <li>on répond par une 202</li>
           </ol>
           <ArticleNote>
-            J'ai décidé d'enregistrer un <code :class="code">webhook_event</code> malgré une signature invalide en
+            J'ai décidé d'enregistrer un <code :class="code">webhook_entry</code> malgré une signature invalide en
             pensant que ça pourrait être une donnée intéressante. Ce n'est pas une obligation, il s'agit encore une
             fois d'un projet de démo et ce type de décision doit être prise en fonction de votre business.
           </ArticleNote>
@@ -188,14 +188,14 @@ const h4 = 'mt-2 text-lg font-medium text-slate-900 dark:text-slate-50'
             permette de garantir cette dernière.
           </p>
           <p>
-            Plus tôt, j'ai abordé le fait de définir ce qui rendait notre <code :class="code">webhook_event</code>
+            Plus tôt, j'ai abordé le fait de définir ce qui rendait notre <code :class="code">webhook_entry</code>
             unique. Afin de matérialiser cette unicité, j'ai décidé de mettre en place une contrainte SQL via
             l'attribut Doctrine <code :class="code">#[ORM\UniqueConstraint]</code>.
           </p>
           <p>
             Cette dernière est assurée par la combinaison <code :class="code">external_event_id</code> +
             <code :class="code">source</code>. Dans mon repository, lors de la création de mes
-            <code :class="code">webhook_event</code>, je catch les éventuelles
+            <code :class="code">webhook_entry</code>, je catch les éventuelles
             <code :class="code">UniqueConstraintViolationException</code> afin de les encapsuler dans une exception
             maison, que je re-throw. Je peux ainsi garantir mon
             <strong class="font-medium text-slate-900 dark:text-slate-100"><u>idempotence</u></strong> via un ultime
@@ -223,7 +223,7 @@ const h4 = 'mt-2 text-lg font-medium text-slate-900 dark:text-slate-50'
           </ArticleNote>
           <p>
             <u>Ce que ça implique dans notre cas:</u>
-            Même si notre <code :class="code">webhook_event</code> est dorénavant enregistré en base de données, il
+            Même si notre <code :class="code">webhook_entry</code> est dorénavant enregistré en base de données, il
             existe un risque que le traitement métier post-enregistrement ne soit pas exécuté.
           </p>
           <p>
@@ -276,7 +276,7 @@ const h4 = 'mt-2 text-lg font-medium text-slate-900 dark:text-slate-50'
           </ArticleNote>
           <p>
             On branche ensuite un listener sur les events de sorte à changer le statut de notre
-            <code :class="code">webhook_event</code> afin de signifier qu'il a bien été dispatch.
+            <code :class="code">webhook_entry</code> afin de signifier qu'il a bien été dispatch.
           </p>
           <ul :class="statusList">
             <li><code :class="code">WorkerMessageReceivedEvent</code> → "dispatched"</li>
@@ -320,7 +320,7 @@ const h4 = 'mt-2 text-lg font-medium text-slate-900 dark:text-slate-50'
             ce sont principalement deux tâches:
           </p>
           <ul :class="unorderedList">
-            <li>la mise à jour du statut de notre <code :class="code">webhook_event</code></li>
+            <li>la mise à jour du statut de notre <code :class="code">webhook_entry</code></li>
             <li>
               le branchement de notre métier (qui n'est pas sans importance puisque sans lui notre réception de webhook
               ne sert pas à grand chose finalement)
@@ -389,7 +389,7 @@ const h4 = 'mt-2 text-lg font-medium text-slate-900 dark:text-slate-50'
 
         <a href="/"
           class="text-sm text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:text-slate-400 dark:hover:text-slate-100 dark:focus-visible:outline-slate-100">
-          ← Retour / Back
+          ← Retour
         </a>
       </article>
     </main>
