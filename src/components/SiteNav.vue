@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { locale, setLocale, t, type Locale } from '../i18n'
 import { theme, toggleTheme } from '../theme'
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     showLangSwitch?: boolean
     pageLocale?: Locale
@@ -12,6 +13,12 @@ withDefaults(
 )
 
 const locales: Locale[] = ['fr', 'en']
+
+onMounted(() => {
+  if (props.pageLocale && props.pageLocale !== locale.value) {
+    setLocale(props.pageLocale)
+  }
+})
 </script>
 
 <template>
