@@ -20,7 +20,7 @@ const stack = [
   'Domain Driven Design',
   'Tech leadership',
 ]
-const email = 'adaniloff@proton.me'
+const email = 'contact@adaniloff.dev'
 </script>
 
 <template>
