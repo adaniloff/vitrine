@@ -86,14 +86,6 @@ onUnmounted(stop)
     </h2>
 
     <div v-show="open" id="career-panel" class="flex flex-col gap-6">
-      <a
-        href="/aleksandr_daniloff.pdf"
-        download
-        class="text-sm text-slate-600 underline-offset-4 transition hover:text-slate-900 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:text-slate-400 dark:hover:text-slate-100 dark:focus-visible:outline-slate-100"
-      >
-        {{ t('career.download') }}
-      </a>
-
       <div
         class="flex flex-col gap-4"
         @mouseenter="stop"

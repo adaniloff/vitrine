@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Locale } from '../i18n'
+import { formatDate } from '../formatDate'
 
 const props = withDefaults(
   defineProps<{
@@ -12,17 +13,7 @@ const props = withDefaults(
   { locale: 'fr' },
 )
 
-const dateLabel = computed(() => {
-  const label = new Date(`${props.date}T00:00:00`).toLocaleDateString(
-    props.locale === 'en' ? 'en-US' : 'fr-FR',
-    {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    },
-  )
-  return label.charAt(0).toUpperCase() + label.slice(1)
-})
+const dateLabel = computed(() => formatDate(props.date, props.locale))
 </script>
 
 <template>
